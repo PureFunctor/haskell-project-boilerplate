@@ -8,7 +8,7 @@ let
           "${compiler}" = pkgs.haskell.packages."${compiler}".override {
             overrides = haskellPackagesNew: haskellPackagesOld: rec {
               haskell-project-boilerplate =
-                haskellPackagesNew.callPackage ./default.nix {  };
+                haskellPackagesNew.callPackage ./project.nix {  };
             };
           };
         };
