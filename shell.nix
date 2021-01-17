@@ -1,5 +1,5 @@
 { pkgs ? import <nixpkgs> {}
-, compiler ? "ghc884"
+, compiler ? "ghc8103"
 }:
 let
   ghc = pkgs.haskell.packages.${compiler}.ghcWithPackages (pkgs: with pkgs; [base aeson]);
