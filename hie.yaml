@@ -1,0 +1,10 @@
+cradle:
+  cabal:
+    - path: "src"
+      component: "lib:haskell-project-boilerplate"
+
+    - path: "app/Main.hs"
+      component: "haskell-project-boilerplate:exe:haskell-project-boilerplate"
+
+    - path: "test"
+      component: "haskell-project-boilerplate:test:haskell-project-boilerplate-test"
