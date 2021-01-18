@@ -1,9 +1,13 @@
-{ pkgs ? import <nixpkgs> {}
-, compiler ? "ghc884"
-}:
+{  }:
+
 let
-  ghc = pkgs.haskell.packages.${compiler}.ghcWithPackages (pkgs: with pkgs; [base aeson]);
+
+  config = import ./config.nix {  };
+
+  haskellPackages = config.nixpkgs.haskell.packages.${config.compiler};
+
+  project = haskellPackages.callPackage ./project.nix { };
+
 in
-  pkgs.mkShell {
-    buildInputs = [ ghc ];
-  }
+
+  if config.nixpkgs.lib.inNixShell then project.env else project
