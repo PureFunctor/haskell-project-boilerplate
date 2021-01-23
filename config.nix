@@ -6,6 +6,7 @@ let
   # Place non-GHC-bundled packages here.
   dependencies = [
     "aeson"
+    "lens"
   ];
 
   config = {
