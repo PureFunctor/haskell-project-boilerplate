@@ -41,9 +41,11 @@ jobs:
         name: ${{ secrets.CACHIX_CACHE_NAME }}
         authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-    - name: Postconfigure Caches
+    - name: Configure Extra Cache
       run: |
-        cat ~/.config/nix
+        sed -E "s/(substituters = .*$)/\1 https:\/\/hydra.iohk.io/g" ~/.config/nix/nix.conf
+        sed -E "s/(trusted-public-keys = .*$)/\1 hydra.iohk.io:f\/Ea+s+dFdN+3Y\/G+FDgSq+a5NEWhJGzdjvKNGv0\/EQ=/g" ~/.config/nix/nix.conf
+        cat ~/.config/nix/nix.conf
 
     - name: Build Package
       run: nix-build scaffolding.nix -A haskell-project-boilerplate.all
