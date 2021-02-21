@@ -46,10 +46,9 @@ jobs:
       run: |
         sed -E "s/(substituters = .*$)/\1 https:\/\/hydra.iohk.io/g" ~/.config/nix/nix.conf > ~/.config/nix/nix.conf
         sed -E "s/(trusted-public-keys = .*$)/\1 hydra.iohk.io:f\/Ea+s+dFdN+3Y\/G+FDgSq+a5NEWhJGzdjvKNGv0\/EQ=/g" ~/.config/nix/nix.conf > ~/.config/nix/nix.conf
-        echo "::set-output name=config::$(cat ~/.config/nix/nix.conf)"
 
     - name: Debug
-      run: echo ${{ steps.extra.outputs.config }}
+      run: echo $(cat ~/.config/nix/nix.conf)
 
     - name: Build Package
       run: nix-build scaffolding.nix -A haskell-project-boilerplate.all
