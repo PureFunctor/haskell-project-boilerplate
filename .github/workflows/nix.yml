@@ -35,15 +35,6 @@ jobs:
       with:
         nix_path: nixpkgs=channel:nixos-unstable
    
-    - name: Preconfigure Cache
-      run: |
-        mkdir -p ~/.config/nix
-        touch ~/.config/nix/nix.conf
-        cat > ~/.config/nix/nix.conf << EOF
-        trusted-public-keys = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=
-        substituters = https://hydra.iohk.io
-        EOF
-
     - name: Install Cachix
       uses: cachix/cachix-action@v8
       with:
